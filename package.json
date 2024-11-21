@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "create-structure": "scripts/createStructure.sh",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
