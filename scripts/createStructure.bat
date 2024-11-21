@@ -1,34 +1,33 @@
-const fs = require('fs');
-const path = require('path');
+@echo off
 
-const directories = [
-    'public',
-    'src/assets/images',
-    'src/assets/styles',
-    'src/components',
-    'src/features/auth',
-    'src/features/dashboard',
-    'src/hooks',
-    'src/layouts',
-    'src/pages',
-    'src/routes',
-    'src/services',
-    'src/store/slices',
-    'src/tests/components',
-    'src/tests/pages',
-    'src/utils',
-];
+:: Directory structure to create
+set directories=(
+    "../public"
+    "../src\assets\images"
+    "../src\assets\styles"
+    "../src\components"
+    "../src\features\auth"
+    "../src\features\dashboard"
+    "../src\hooks"
+    "../src\layouts"
+    "../src\pages"
+    "../src\routes"
+    "../src\services"
+    "../src\store\slices"
+    "../src\tests\components"
+    "../src\tests\pages"
+    "../src\utils"
+)
 
-const createDirectories = () => {
-    directories.forEach((dir) => {
-        const dirPath = path.join(process.cwd(), dir);
-        if (!fs.existsSync(dirPath)) {
-            fs.mkdirSync(dirPath, { recursive: true });
-            console.log(`Created directory: ${dir}`);
-        }
-    });
-};
+:: Loop through each directory and create it if it doesn't exist
+for %%d in %directories% do (
+    if not exist %%d (
+        mkdir %%d
+        echo Created directory: %%d
+    ) else (
+        echo Directory already exists: %%d
+    )
+)
 
-createDirectories();
-
-console.log('Project structure created successfully!');
+echo All directories created successfully!
+pause
